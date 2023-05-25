@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld-app
+  labels:
+    app: helloworld
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: helloworld
+          image: segunorija/techtest-devops:latest
+          ports:
+            - containerPort: 1337
+          env:
+            - name: CANDIDATE_FIRSTNAME
+              value: "John" # Replace with your desired first name
